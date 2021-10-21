@@ -9,6 +9,4 @@
 import UIKit
 struct SessionCard {
     let title: String
-    let time: String
-//    let icon: UIImage
 }
