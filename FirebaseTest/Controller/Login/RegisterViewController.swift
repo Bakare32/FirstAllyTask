@@ -185,14 +185,20 @@ class RegisterViewController: UIViewController {
             FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) {  authResult, error in
             
                 guard authResult != nil, error == nil else {
-                    print("Error curreating user")
+                    print("Error creating user")
+                    strongSelf.alertUserLoginError(message: "Looks like a user account for that email address already exists.")
                     return
                 }
                 
                 DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
+                print("hello")
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             }
         }
+        
+            let vc = LoginViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         
     }
     func alertUserLoginError(message: String = "Please enter all information to create a new account") {
