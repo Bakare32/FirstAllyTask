@@ -12,5 +12,5 @@ pod 'Firebase'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Analytics'
 pod 'Firebase/Performance'
-
+pod 'RaveSDK'
 end

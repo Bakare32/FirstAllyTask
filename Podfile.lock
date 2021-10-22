@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.4)
   - Firebase (8.8.0):
     - Firebase/Core (= 8.8.0)
   - Firebase/Analytics (8.8.0):
@@ -129,13 +130,19 @@ PODS:
   - GoogleUtilities/UserDefaults (7.5.2):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.7.0)
+  - IQKeyboardManagerSwift (6.5.6)
   - leveldb-library (1.22.1)
+  - lottie-ios (3.0.7)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - RaveSDK (2.3.2):
+    - Alamofire
+    - IQKeyboardManagerSwift
+    - lottie-ios (~> 3.0.2)
 
 DEPENDENCIES:
   - Firebase
@@ -145,9 +152,11 @@ DEPENDENCIES:
   - Firebase/Crashlytics
   - Firebase/Database
   - Firebase/Performance
+  - RaveSDK
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -163,11 +172,15 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - leveldb-library
+    - lottie-ios
     - nanopb
     - PromisesObjC
+    - RaveSDK
 
 SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   Firebase: 629510f1a9ddb235f3a7c5c8ceb23ba887f0f814
   FirebaseABTesting: 981336dd14d84787e33466e4247f77ec2343f8d9
   FirebaseAnalytics: 5506ea8b867d8423485a84b4cd612d279f7b0b8a
@@ -183,10 +196,13 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  lottie-ios: c38c3178ae8c4a8f200661aa5f80b9f1ca7f56b3
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  RaveSDK: 91715e58550c9124667acbdc467ecf22d1e88545
 
-PODFILE CHECKSUM: 4dd1838d20227ded87df5c0bf19413291e5a9e08
+PODFILE CHECKSUM: 60e4b9bfb1c7c22a3aa35a1057768bf8667c5d9f
 
 COCOAPODS: 1.11.2

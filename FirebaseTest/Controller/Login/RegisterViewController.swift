@@ -189,9 +189,7 @@ class RegisterViewController: UIViewController {
                 
                 DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
                 print("hello")
-                DispatchQueue.main.async {
                     strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-                }
             }
         }
     }
