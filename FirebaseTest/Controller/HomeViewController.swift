@@ -30,46 +30,60 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let sleepBetterView: UIView = {
       let view = UIView()
       view.layer.cornerRadius = 15
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor(red: 0.1804, green: 0.1176, blue: 0.8392, alpha: 1.0)
       view.translatesAutoresizingMaskIntoConstraints = false
       return view
     }()
     // MARK: - label to display name of session
     lazy var nameLabel: UILabel = {
       let label = UILabel()
-      label.text = "Sleep better"
+      label.text = "Available Balance"
       label.translatesAutoresizingMaskIntoConstraints = false
       label.numberOfLines = 1
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "Helvetica", size: 20.0)
       return label
     }()
     // MARK: - label to display time
     lazy var timeLabel: UILabel = {
       let label = UILabel()
-      label.text = "35 min"
+      label.text = "#2,456,890.21"
       label.translatesAutoresizingMaskIntoConstraints = false
       label.numberOfLines = 1
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "Helvetica", size: 20.0)
       return label
     }()
-    // MARK: - setting play icon image on a button
-    lazy var playButtonIcon: UIButton = {
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "person.circle")
+        imageView.tintColor = .gray
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "56B6E016-F020-4D2B-96FB-88F4C6FFCBEA_1_105_c")
+        imageView.layer.cornerRadius = 12
+        imageView.layer.masksToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    // MARK: - button to display sessions
+    lazy var transactionButton: UIButton = {
       let button = UIButton()
+        button.setTitle("Transaction", for: .normal)
       button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(red: 0.1725, green: 0.1176, blue: 0.1529, alpha: 1.0)
+        button.layer.cornerRadius = 12
       return button
     }()
-    // MARK: - session(sleep better) image view display
-    lazy var imageView: UIImageView = {
-      let imageView = UIImageView()
-      imageView.contentMode = .scaleAspectFit
-      imageView.translatesAutoresizingMaskIntoConstraints = false
-      return imageView
-    }()
-    // MARK: - label to display sessions
-    lazy var sessionLabel: UILabel = {
-      let label = UILabel()
-      label.text = "Sessions"
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.numberOfLines = 1
-      return label
+    
+    lazy var cardsButton: UIButton = {
+      let button = UIButton()
+        button.setTitle("Cards", for: .normal)
+      button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(red: 0.1725, green: 0.1176, blue: 0.1529, alpha: 1.0)
+        button.layer.cornerRadius = 12
+      return button
     }()
     // MARK: - view to display information about a session
     let sessionSubView: UIView = {
@@ -81,9 +95,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-//        constraintViews()
-//        configureTableView()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,34 +110,37 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
       view.addSubview(sleepBetterView)
       view.addSubview(nameLabel)
       view.addSubview(timeLabel)
-      view.addSubview(playButtonIcon)
       view.addSubview(imageView)
-      view.addSubview(sessionLabel)
+      view.addSubview(transactionButton)
+        view.addSubview(cardsButton)
     }
     // MARK: - function to constrian all sub view
     func constraintViews() {
       addDefaultViews()
       self.navigationItem.setHidesBackButton(true, animated: true)
-        tableView.anchorWithConstantsToTop(top: sessionLabel.topAnchor,
-                                                left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 0, rightConstant: 10)
+        tableView.anchorWithConstantsToTop(top: transactionButton.topAnchor,
+                                                left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 70, leftConstant: 0, bottomConstant: 0, rightConstant: 10)
       NSLayoutConstraint.activate([
-        sleepBetterView.topAnchor.constraint(equalTo: view.topAnchor, constant: 132),
+        imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+        imageView.bottomAnchor.constraint(equalTo: sleepBetterView.topAnchor, constant: -10),
+        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+        imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+        sleepBetterView.topAnchor.constraint(equalTo: view.topAnchor, constant: 180),
         sleepBetterView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
         sleepBetterView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-        sleepBetterView.heightAnchor.constraint(equalToConstant: 230),
-        nameLabel.topAnchor.constraint(equalTo: sleepBetterView.topAnchor, constant: 36),
-        nameLabel.leadingAnchor.constraint(equalTo: sleepBetterView.leadingAnchor, constant: 15),
+        sleepBetterView.heightAnchor.constraint(equalToConstant: 120),
+        nameLabel.topAnchor.constraint(equalTo: sleepBetterView.topAnchor, constant: 26),
+        nameLabel.leadingAnchor.constraint(equalTo: sleepBetterView.leadingAnchor, constant: 85),
         timeLabel.topAnchor.constraint(equalTo: sleepBetterView.topAnchor, constant: 71),
-        timeLabel.leadingAnchor.constraint(equalTo: sleepBetterView.leadingAnchor, constant: 15),
-        playButtonIcon.topAnchor.constraint(equalTo: sleepBetterView.topAnchor, constant: 51),
-        playButtonIcon.leadingAnchor.constraint(equalTo: sleepBetterView.leadingAnchor, constant: 15),
-        playButtonIcon.bottomAnchor.constraint(equalTo: sleepBetterView.bottomAnchor, constant: 37),
-        imageView.topAnchor.constraint(equalTo: sleepBetterView.topAnchor, constant: 90),
-        imageView.trailingAnchor.constraint(equalTo: sleepBetterView.trailingAnchor, constant: 0),
-        imageView.bottomAnchor.constraint(equalTo: sleepBetterView.bottomAnchor, constant: 0),
-        sessionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30 ),
-        sessionLabel.topAnchor.constraint(equalTo: sleepBetterView.bottomAnchor, constant: 60),
-        sessionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 270)
+        timeLabel.leadingAnchor.constraint(equalTo: sleepBetterView.leadingAnchor, constant: 85),
+        transactionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20 ),
+        transactionButton.topAnchor.constraint(equalTo: sleepBetterView.bottomAnchor, constant: 60),
+        transactionButton.heightAnchor.constraint(equalToConstant: 42),
+        transactionButton.widthAnchor.constraint(equalToConstant: 170),
+        cardsButton.leadingAnchor.constraint(equalTo: transactionButton.trailingAnchor, constant: 40),
+        cardsButton.topAnchor.constraint(equalTo: sleepBetterView.bottomAnchor, constant: 60),
+        cardsButton.widthAnchor.constraint(equalToConstant: 130),
+        cardsButton.heightAnchor.constraint(equalToConstant: 42)
       ])
     }
     

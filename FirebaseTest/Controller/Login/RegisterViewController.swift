@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 
 class RegisterViewController: UIViewController {
+    public var selectedImage: Any?
     
     private let scrollView: UIScrollView = {
        let scrollView = UIScrollView()
@@ -103,8 +104,6 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         title = "Log In"
         view.backgroundColor = .white
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
-        
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
         emailTextField.delegate = self
@@ -122,8 +121,6 @@ class RegisterViewController: UIViewController {
         scrollView.isUserInteractionEnabled = true
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePics))
-        
-//        gesture.numberOfTouchesRequired = 1
         imageView.addGestureRecognizer(gesture)
     }
     
@@ -192,14 +189,11 @@ class RegisterViewController: UIViewController {
                 
                 DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
                 print("hello")
-                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+                }
             }
         }
-        
-            let vc = LoginViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
-        
     }
     func alertUserLoginError(message: String = "Please enter all information to create a new account") {
         let alert = UIAlertController(title: "Woops",
@@ -259,8 +253,8 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
-        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
-        self.imageView.image = selectedImage
+        selectedImage = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
+        self.imageView.image = selectedImage as? UIImage
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
