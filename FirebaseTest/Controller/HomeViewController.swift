@@ -162,7 +162,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cellItem = data[indexPath.row]
+        let cellItem = data[indexPath.row]
+        switch cellItem.title {
+        case "Settings":
+            let vc = SettingsViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        default: break
+            
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
