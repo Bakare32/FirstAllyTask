@@ -13,5 +13,7 @@ I consumed exchargeRate api to convert the currencies.
 I used MVVM as the architecture of the app.
 
 
+Run pod install.
+
 This is the link to the app demo
 https://drive.google.com/file/d/1ThDJN4OcZwUqXS0sAC-gxrlU1qWNkhzN/view?usp=sharing
