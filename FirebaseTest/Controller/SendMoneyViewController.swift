@@ -63,7 +63,23 @@ class SendMoneyViewController: UIViewController, UIPickerViewDataSource, UIPicke
         button.addTarget(self, action: #selector(callFlutterWaveAPI), for: .touchUpInside)
         return button
     }()
-    
+    let topBackArrowButton: UIButton = {
+      let button = UIButton()
+      button.addTarget(self, action: #selector(previousPage), for: .touchUpInside)
+      button.translatesAutoresizingMaskIntoConstraints = false
+      button.setBackgroundImage(UIImage(named: "Go-back"), for: .normal)
+      return button
+    }()
+    // MARK: - PAGE TITLE
+    let pageTitleLabel: UILabel = {
+      let label = UILabel()
+      label.text = "Send Money"
+      label.numberOfLines = 2
+        label.font = .boldSystemFont(ofSize: 25)
+      label.textAlignment = .center
+      label.translatesAutoresizingMaskIntoConstraints = false
+      return label
+    }()
     var currenyCode: [String] = []
     var values: [Double] = []
     var activeCurrency: Double = 0.0
@@ -108,6 +124,11 @@ class SendMoneyViewController: UIViewController, UIPickerViewDataSource, UIPicke
                              controller.delegate = self
                              self.present(nav, animated: true)
     }
+    @objc func previousPage() {
+        let vc = HomeViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
     
     func setUpConstraint() {
         view.addSubview(pickViewer)
@@ -115,8 +136,14 @@ class SendMoneyViewController: UIViewController, UIPickerViewDataSource, UIPicke
         view.addSubview(emailTextField)
         view.addSubview(sendMoneyButton)
         view.addSubview(messageLabel)
+        view.addSubview(topBackArrowButton)
+        view.addSubview(pageTitleLabel)
         
         NSLayoutConstraint.activate([
+            topBackArrowButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            topBackArrowButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            pageTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            pageTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             firstLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 90),
             firstLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             messageLabel.topAnchor.constraint(equalTo: firstLabel.bottomAnchor, constant: 250),

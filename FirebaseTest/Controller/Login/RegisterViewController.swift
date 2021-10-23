@@ -178,18 +178,20 @@ class RegisterViewController: UIViewController {
                 strongSelf.alertUserLoginError(message: "Looks like a user account for that email address already exists.")
                 return
             }
-         
-            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) {  authResult, error in
             
-                guard authResult != nil, error == nil else {
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) {  authResult, error in
+                
+                guard let authResult = authResult, error == nil else {
                     print("Error creating user")
                     strongSelf.alertUserLoginError(message: "Looks like a user account for that email address already exists.")
                     return
                 }
                 
                 DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
-                print("hello")
-                    strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+                print("hello", authResult.user)
+                let vc = HomeViewController()
+                vc.modalPresentationStyle = .fullScreen
+                strongSelf.present(vc, animated: true, completion: nil)
             }
         }
     }

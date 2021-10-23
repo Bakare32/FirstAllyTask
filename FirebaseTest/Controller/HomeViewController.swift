@@ -187,26 +187,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = SendMoneyViewController()
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
-//            let config = RaveConfig.sharedConfig()
-//                     config.country = "NG" // Country Code
-//                     config.currencyCode = "NGN" // Currency
-//                     config.email = "[customer@email.com]" // Customer's email
-//                     config.isStaging = false // Toggle this for staging and live environment
-//                     config.phoneNumber = "08102987179" //Phone number
-//                     config.transcationRef = "ref" // transaction ref
-//                     config.firstName = "Waris"
-//                     config.lastName = "Bakare"
-//                     config.meta = [["metaname":"sdk", "metavalue":"ios"]]
-//
-//                     config.publicKey = "FLWPUBK_TEST-fa51a0b283494ce091e565f77df529ea-X" //Public key
-//                     config.encryptionKey = "FLWSECK_TEST2e8c126430ce" //Encryption key
-//
-//
-//                     let controller = NewRavePayViewController()
-//                     let nav = UINavigationController(rootViewController: controller)
-//                     controller.amount = "5000"
-//                     controller.delegate = self
-//                     self.present(nav, animated: true)
         default: break
             
         }

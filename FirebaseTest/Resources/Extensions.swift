@@ -60,3 +60,12 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+    class func makeSettingsImage() -> UIImageView {
+      let imageView = UIImageView()
+      imageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+      imageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
+      return imageView
+    }
+}
