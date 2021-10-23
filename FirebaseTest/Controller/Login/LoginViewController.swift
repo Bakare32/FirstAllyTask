@@ -83,6 +83,15 @@ class LoginViewController: UIViewController {
         return label
     }()
     
+    private let companyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "First Ally"
+        label.numberOfLines = 1
+        label.textColor = UIColor(red: 0.7882, green: 0.7608, blue: 0, alpha: 1.0)
+        label.font = UIFont.boldSystemFont(ofSize: 30.0)
+        return label
+    }()
+    
     private let signUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign Up", for: .normal)
@@ -111,12 +120,17 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(forgetPasswordButton)
         scrollView.addSubview(signUpLabel)
         scrollView.addSubview(signUpButton)
+        scrollView.addSubview(companyLabel)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         scrollView.frame = view.bounds
         let size = scrollView.width/3
+        companyLabel.frame = CGRect(x: (scrollView.width - size)/2,
+                                    y: scrollView.top-10,
+                                    width: size,
+                                    height: size)
         loginLabel.frame = CGRect(x: (scrollView.width - size)/2,
                                  y: 170,
                                  width: size,
