@@ -132,7 +132,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - function to constrian all sub view
     func constraintViews() {
       addDefaultViews()
-      self.navigationItem.setHidesBackButton(true, animated: true)
         tableView.anchorWithConstantsToTop(top: transactionButton.topAnchor,
                                                 left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 70, leftConstant: 0, bottomConstant: 0, rightConstant: 10)
       NSLayoutConstraint.activate([

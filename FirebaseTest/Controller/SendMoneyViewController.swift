@@ -51,7 +51,7 @@ class SendMoneyViewController: UIViewController, UIPickerViewDataSource, UIPicke
       textField.addTarget(self, action: #selector(updateViews), for: .editingChanged )
       return textField
     }()
-    private let sendMoneyButton: UIButton = {
+    let sendMoneyButton: UIButton = {
         let button = UIButton()
         button.setTitle("Send Now", for: .normal)
         button.backgroundColor = .black
@@ -104,19 +104,18 @@ class SendMoneyViewController: UIViewController, UIPickerViewDataSource, UIPicke
   
     @objc func callFlutterWaveAPI() {
         let config = RaveConfig.sharedConfig()
-                             config.country = "NG" // Country Code
-                             config.currencyCode = "NGN" // Currency
-                             config.email = "[customer@email.com]" // Customer's email
-                             config.isStaging = false // Toggle this for staging and live environment
-                             config.phoneNumber = "08102987179" //Phone number
-                             config.transcationRef = "ref" // transaction ref
+                             config.country = "NG"
+                             config.currencyCode = "NGN"
+                             config.email = "[customer@email.com]"
+                             config.isStaging = false
+                             config.phoneNumber = "08102987179"
+                             config.transcationRef = "ref"
                              config.firstName = "Waris"
                              config.lastName = "Bakare"
                              config.meta = [["metaname":"sdk", "metavalue":"ios"]]
         
-                             config.publicKey = "FLWPUBK_TEST-fa51a0b283494ce091e565f77df529ea-X" //Public key
-                             config.encryptionKey = "FLWSECK_TEST2e8c126430ce" //Encryption key
-        
+                             config.publicKey = "FLWPUBK_TEST-fa51a0b283494ce091e565f77df529ea-X"
+                             config.encryptionKey = "FLWSECK_TEST2e8c126430ce"         
         
                              let controller = NewRavePayViewController()
                              let nav = UINavigationController(rootViewController: controller)
@@ -130,38 +129,6 @@ class SendMoneyViewController: UIViewController, UIPickerViewDataSource, UIPicke
         present(vc, animated: true)
     }
     
-    func setUpConstraint() {
-        view.addSubview(pickViewer)
-        view.addSubview(firstLabel)
-        view.addSubview(emailTextField)
-        view.addSubview(sendMoneyButton)
-        view.addSubview(messageLabel)
-        view.addSubview(topBackArrowButton)
-        view.addSubview(pageTitleLabel)
-        
-        NSLayoutConstraint.activate([
-            topBackArrowButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            topBackArrowButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            pageTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            pageTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 90),
-            firstLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            messageLabel.topAnchor.constraint(equalTo: firstLabel.bottomAnchor, constant: 250),
-            messageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emailTextField.topAnchor.constraint(equalTo: firstLabel.bottomAnchor, constant: 290),
-            emailTextField.heightAnchor.constraint(equalToConstant: 38),
-            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            pickViewer.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 10),
-            pickViewer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            pickViewer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            sendMoneyButton.topAnchor.constraint(equalTo: pickViewer.bottomAnchor, constant: 20),
-            sendMoneyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            sendMoneyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -70),
-            sendMoneyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            sendMoneyButton.heightAnchor.constraint(equalToConstant: 52)
-        ])
-    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -210,12 +177,3 @@ class SendMoneyViewController: UIViewController, UIPickerViewDataSource, UIPicke
 
 }
 
-class LeftPaddedTextField: UITextField {
-  override func textRect(forBounds bounds: CGRect) -> CGRect {
-    return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width + 10, height: bounds.height)
-  }
-  override func editingRect(forBounds bounds: CGRect) -> CGRect {
-    return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width + 10, height: bounds.height)
-  }
-
-}
